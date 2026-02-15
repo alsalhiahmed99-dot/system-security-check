@@ -2,68 +2,75 @@ import streamlit as st
 import time
 import random
 
-# إعدادات الصفحة
-st.set_page_config(page_title="Terminal - System Root Access", page_icon="📟")
+# إعدادات الصفحة - اسم يوحي ببرنامج حماية
+st.set_page_config(page_title="System Security Shield v5.0", page_icon="🔒")
 
-# ستايل الهكر المرعب
+# ستايل هكر احترافي (خلفية سوداء، خط أخضر فاقع، وبدون حواف)
 st.markdown("""
     <style>
-    .stApp { background-color: #020202; color: #39FF14; font-family: 'Courier New', Courier, monospace; }
-    .stProgress > div > div > div > div { background-color: #39FF14; }
+    .stApp { background-color: #000000; color: #00FF41; font-family: 'Courier New', Courier, monospace; }
+    .stButton>button { background-color: #000000; color: #00FF41; border: 1px solid #00FF41; width: 100%; }
+    .stError { background-color: #1a0000; color: #ff0000; border: 1px solid #ff0000; }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("📟 System Kernel v4.0.2")
-st.write("---")
+# حالة الجلسة
+if 'access_granted' not in st.session_state:
+    st.session_state.access_granted = False
 
-# تعريف حالة الهكر إذا ما كانت موجودة
-if 'hacked' not in st.session_state:
-    st.session_state.hacked = False
-
-# الشاشة الأولى: زر البدء
-if not st.session_state.hacked:
-    st.write("⚠️ تحذير: هذا النظام مخصص للفحص الأمني فقط.")
-    if st.button("RUN SECURITY CHECK"):
-        st.session_state.hacked = True
+if not st.session_state.access_granted:
+    st.title("🔒 Security Analyzer")
+    st.write("System status: SECURE")
+    st.write("Scanning for vulnerabilities...")
+    if st.button("START FULL SYSTEM SCAN"):
+        st.session_state.access_granted = True
         st.rerun()
 
-# الشاشة الثانية: مرحلة الاختراق الوهمي
 else:
-    status_area = st.empty()
-    
-    # قائمة الأوامر "الواقعية"
-    hacker_commands = [
-        "Connecting to proxy 192.168.1.44...",
-        "Bypassing Oman-School Firewall...",
-        "Gaining Root Privileges... [SUCCESS]",
-        "Injecting Payload into WhatsApp.apk...",
-        "Accessing Media Storage /DCIM/Camera...",
-        "Syncing private photos to server...",
-        "Triggering Front Camera API...",
-        "Extracting GPS Coordinates: 23.5859° N, 58.4059° E",
-        "Matching User Profile with FaceID..."
+    # شاشة الاختراق
+    status_text = st.empty()
+    terminal_logs = st.empty()
+    logs = ""
+
+    # سلسلة عمليات وهمية تبدو حقيقية جداً
+    processes = [
+        "Connecting to local gateway 192.168.1.1...",
+        "Exploiting CVE-2023-4012 (Kernel level)...",
+        "ROOT ACCESS: GRANTED",
+        "Accessing /private/var/mobile/Library/SMS/...",
+        "Downloading WhatsApp Database...",
+        "Opening Front Camera Module (Silent Mode)...",
+        "Capturing user metadata...",
+        "Uploading to remote server: 45.22.190.11...",
+        "ENCRYPTING LOCAL FILES..."
     ]
 
-    # عرض الأوامر ببطء
-    for cmd in hacker_commands:
-        status_area.warning(f"EXECUTING: {cmd}")
-        time.sleep(random.uniform(1.5, 3.0)) 
-    
+    for p in processes:
+        logs += f"> {p}\n"
+        terminal_logs.code(logs, language="bash")
+        time.sleep(random.uniform(2.5, 4.0)) # وقت طويل لزيادة التوتر
+
     st.write("---")
-    st.error("🚨 USER IDENTIFIED 🚨")
+    st.error("⚠️ CRITICAL BREACH DETECTED: DATA LEAK IN PROGRESS")
     time.sleep(2)
 
-    # عد تنازلي مرعب
-    for i in range(5, 0, -1):
-        st.subheader(f"System Lockdown in {i}...")
+    # العد التنازلي للتدمير
+    count_area = st.empty()
+    for i in range(10, 0, -1):
+        count_area.subheader(f"System Wipe in {i} seconds...")
         time.sleep(1)
     
-    # الصدمة الكبرى - تظهر الصورة
-    # تأكد أن الملف اسمه victim.png وموجود في GitHub
-    try:
-        st.image("victim.png", caption="هذي صورتك يا بطل؟ تم سحب كل ملفاتك بنجاح.")
-    except:
-        st.error("فشل في تحميل الصورة - تأكد من وجود ملف victim.png")
+    count_area.empty()
     
+    # اللحظة الحاسمة: عرض الصورة بدون كلمات تشجيعية
+    try:
+        st.image("victim.png", caption="IP Address: 156.190.42.11 | Identity: CONFIRMED")
+    except:
+        st.error("ERROR: RECOVERY_IMAGE_NOT_FOUND")
+
     st.audio("https://www.soundjay.com/buttons/beep-01a.mp3")
-    st.markdown("### **لا تحاول أغلاق الصفحة، جاري الآن مسح الذاكرة الداخلية للهاتف...**")
+    
+    st.markdown("""
+    <h2 style='color: red; text-align: center;'>تم سحب بياناتك بنجاح.</h2>
+    <p style='color: white; text-align: center;'>لا تقم بإغلاق المتصفح لضمان عدم تلف نظام التشغيل.</p>
+    """, unsafe_allow_html=True)
