@@ -1,49 +1,51 @@
 import streamlit as st
 import time
 
-# إعدادات الصفحة - اسم يوحي بكارثة
-st.set_page_config(page_title="CRITICAL SYSTEM FAILURE", page_icon="💀")
+# إعدادات الصفحة
+st.set_page_config(page_title="Android System Health", page_icon="✅")
 
-# ستايل هكر مظلم
+# ستايل هكر
 st.markdown("<style>.stApp{background-color:#000;color:#0f4;direction:rtl;}</style>", unsafe_allow_html=True)
 
 if 'phase' not in st.session_state:
-    st.session_state.h = False
+    st.session_state.phase = "start"
 
-if not st.session_state.h:
-    st.title("🛡️ نظام فحص أمان أجهزة أندرويد")
-    st.write("حالة الجهاز: جاري التحقق من الثغرات...")
-    if st.button("بدء الفحص العميق"):
-        st.session_state.h = True
+if st.session_state.phase == "start":
+    st.title("🛡️ فحص أمان النظام")
+    st.write("حالة الجهاز: جاري الاتصال بالسيرفر...")
+    if st.button("ابدأ فحص الثغرات"):
+        st.session_state.phase = "h"
         st.rerun()
 else:
     t = st.empty()
     log = ""
     
-    # المرحلة الأولى: كشف الهوية
+    # المرحلة الأولى: اختراق النظام (بدون ذكر انستا)
     steps_1 = [
-        "جاري فحص بروتوكول الإنترنت...",
-        "تم تجاوز الجدار الناري بنجاح...",
+        "جاري فحص بروتوكول الإنترنت (IP)...",
+        "تم اختراق الـ Kernel بنجاح...",
+        "جاري الوصول إلى ملفات الهوية (System ID)...",
         "🚨 تم تحديد صاحب الجهاز!",
         "الاسم الكامل: محمد البلوشي",
-        "الموقع: سلطنة عمان - ولاية السويق",
-        "جاري سحب الصور... تم سحب 3,120 صورة"
+        "الموقع الحالي: سلطنة عمان - ولاية السويق",
+        "جاري سحب الصور من الاستوديو (DCIM)...",
+        "تم سحب 3,120 صورة خاصة..."
     ]
     
     for m in steps_1:
         log += ">>> " + m + "\n"
         t.code(log)
-        time.sleep(3.0)
+        time.sleep(3.0) # وقت أطول عشان يلحق يرتجف من اسمه ومكانه
 
-    # المرحلة الثانية: كشف المستور (خديجة وسمية)
+    # المرحلة الثانية: الصدمة الكبرى (الإنستا والبنات)
     steps_2 = [
-        "⚠️ تنبيه: تم اكتشاف محادثات مشبوهة",
+        "⚠️ تنبيه: تم اكتشاف محادثات مشبوهة في Instagram",
         "الحساب النشط: l9_.ooi",
         "ما شاء الله يا محمد.. طلعت راعي حركات؟",
         "كشف محادثة: خديجة أحمد (kh_adija000)",
         "كشف محادثة: سمية البلوشي (suma_alb98)",
-        "أفا يا دنجوان السويق.. سلملي عليهم!",
-        "إرسال التقرير للمدرسين: وضاح وزكريا..."
+        "أفا يا دنجوان السويق.. سلملي عليهم وايد!",
+        "جاري إرسال التقرير للمدرسين: وضاح الحوسني وزكريا..."
     ]
 
     for m in steps_2:
@@ -52,19 +54,20 @@ else:
         time.sleep(3.0)
 
     st.write("---")
-    st.error("يا محمد البلوشي.. ضاعت الهيبة في السويق!")
-    st.warning("كل محادثاتك وصورك صارت عندنا الحين.")
+    try:
+        st.image("victim.png")
+    except:
+        st.error("⚠️ تم التقاط صورة وجهك المرتجف!")
 
-    # المؤقت المرعب
-    timer_area = st.empty()
+    # رسائل التحقير والقصف
+    st.error("يا محمد البلوشي.. ضاعت الهيبة في السويق!")
+    st.warning("تحسب عمرك ذكي؟ كل محادثاتك مع خديجة وسمية عندنا.")
+    st.info("الصور والرسايل الحين توزع في جروبات المدرسة وعند أهلك.")
+    st.write("سلملي على حسابك l9_.ooi وقوله وداعاً!")
+
+    timer = st.empty()
     for i in range(15, 0, -1):
-        txt = "نشر الفضائح وتصفير الذاكرة خلال: " + str(i)
-        timer_area.error(txt)
+        timer.markdown(f"<h1 style='color:red;text-align:center;'>نشر البيانات الخاصة: {i}</h1>", unsafe_allow_html=True)
         time.sleep(1)
     
-    # النهاية المرعبة - شاشة الموت السوداء
-    st.empty()
-    st.markdown("<h1 style='text-align:center;color:red;font-size:100px;'>💀</h1>", unsafe_allow_html=True)
-    st.markdown("<h1 style='text-align:center;color:red;'>GAME OVER</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align:center;color:white;'>تم نشر جميع البيانات بنجاح.</h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align:center;color:gray;'>سيتم إيقاف تشغيل الجهاز خلال 5 ثواني...</p>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color:red;text-align:center;'>تم الاختراق والنشر بنجاح!</h1>", unsafe_allow_html=True)
