@@ -3,7 +3,7 @@ import time
 import random
 
 # إعدادات الصفحة
-st.set_page_config(page_title="نظام الفحص الأمني الموحد", page_icon="🛡️")
+st.set_page_config(page_title="نظام الحماية الرقمية", page_icon="🛡️", layout="centered")
 
 # ستايل الهكر الاحترافي
 st.markdown("""
@@ -18,22 +18,32 @@ if 'access_granted' not in st.session_state:
     st.session_state.access_granted = False
 
 if not st.session_state.access_granted:
-    st.title("🛡️ نظام الحماية الرقمية")
-    st.write("حالة الجهاز: يتطلب فحصاً فورياً")
-    st.write("هذا النظام مرتبط بقاعدة بيانات أمن المعلومات.")
-    if st.button("بدء فحص الثغرات الأمنية"):
+    st.title("🛡️ نظام الفحص الموحد")
+    st.write("حالة الجهاز: غير محمي")
+    if st.button("بدء فحص الثغرات"):
         st.session_state.access_granted = True
         st.rerun()
 
 else:
-    # شاشة الاختراق بالعربي
     status_text = st.empty()
     terminal_logs = st.empty()
     logs = ""
 
-    # سلسلة عمليات وهمية باللغة العربية
+    # قائمة العمليات (تأكد من نسخها كاملة مع علامات التنصيص)
     processes = [
-        "جاري الاتصال بالبوابة الرقمية 192.168.1.1...",
-        "اختراق الجدار الناري للنظام... تم بنجاح",
-        "صلاحيات المسؤول (Root): تم الحصول عليها",
-        "جاري الد
+        "جاري الاتصال بالسيرفر المركزي...",
+        "اختراق الجدار الناري... تم",
+        "صلاحيات المسؤول: تم الحصول عليها",
+        "جاري سحب سجل المكالمات والرسائل...",
+        "فتح الكاميرا الأمامية... وضع التخفي",
+        "جاري رفع الصور إلى السيرفر...",
+        "تشفير ملفات الجهاز بالكامل..."
+    ]
+
+    for p in processes:
+        logs += f"> {p}\n"
+        terminal_logs.code(logs, language="bash")
+        time.sleep(random.uniform(2.0, 3.5))
+
+    st.write("---")
+    st.error("🚨 تم اختراق الخصوصية بن
