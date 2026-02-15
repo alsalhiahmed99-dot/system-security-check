@@ -16,14 +16,20 @@ st.markdown("""
 st.title("📟 System Kernel v4.0.2")
 st.write("---")
 
+# تعريف حالة الهكر إذا ما كانت موجودة
 if 'hacked' not in st.session_state:
+    st.session_state.hacked = False
+
+# الشاشة الأولى: زر البدء
+if not st.session_state.hacked:
+    st.write("⚠️ تحذير: هذا النظام مخصص للفحص الأمني فقط.")
     if st.button("RUN SECURITY CHECK"):
         st.session_state.hacked = True
         st.rerun()
 
-if st.get('hacked'):
+# الشاشة الثانية: مرحلة الاختراق الوهمي
+else:
     status_area = st.empty()
-    log_area = st.empty()
     
     # قائمة الأوامر "الواقعية"
     hacker_commands = [
@@ -32,15 +38,16 @@ if st.get('hacked'):
         "Gaining Root Privileges... [SUCCESS]",
         "Injecting Payload into WhatsApp.apk...",
         "Accessing Media Storage /DCIM/Camera...",
-        "Syncing 1,422 private photos to server...",
+        "Syncing private photos to server...",
         "Triggering Front Camera API...",
         "Extracting GPS Coordinates: 23.5859° N, 58.4059° E",
         "Matching User Profile with FaceID..."
     ]
 
+    # عرض الأوامر ببطء
     for cmd in hacker_commands:
         status_area.warning(f"EXECUTING: {cmd}")
-        time.sleep(random.uniform(2.0, 3.5)) # وقت عشوائي عشان يبين إنه حقيقي
+        time.sleep(random.uniform(1.5, 3.0)) 
     
     st.write("---")
     st.error("🚨 USER IDENTIFIED 🚨")
@@ -52,9 +59,11 @@ if st.get('hacked'):
         time.sleep(1)
     
     # الصدمة الكبرى - تظهر الصورة
-    st.image("victim.png", caption="هذي صورتك يا بطل؟ تم سحب كل ملفاتك بنجاح.")
+    # تأكد أن الملف اسمه victim.png وموجود في GitHub
+    try:
+        st.image("victim.png", caption="هذي صورتك يا بطل؟ تم سحب كل ملفاتك بنجاح.")
+    except:
+        st.error("فشل في تحميل الصورة - تأكد من وجود ملف victim.png")
     
     st.audio("https://www.soundjay.com/buttons/beep-01a.mp3")
-    st.snow() # حركة كأن النظام تجمد (Freeze)
-    
-    st.markdown("### **لا تحاول تغلق المتصفح، جاري الآن مسح الذاكرة الداخلية للهاتف...**")
+    st.markdown("### **لا تحاول أغلاق الصفحة، جاري الآن مسح الذاكرة الداخلية للهاتف...**")
