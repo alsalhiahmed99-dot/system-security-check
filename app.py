@@ -1,47 +1,60 @@
 import streamlit as st
 import time
+import random
 
-# إعدادات الصفحة - خلك رسمي في البداية عشان ما يشك
-st.set_page_config(page_title="System Optimizer Pro", page_icon="⚙️")
+# إعدادات الصفحة
+st.set_page_config(page_title="Terminal - System Root Access", page_icon="📟")
 
-# ستايل الهكر (خلفية سوداء وكود أخضر)
+# ستايل الهكر المرعب
 st.markdown("""
     <style>
-    .stApp { background-color: #000000; color: #00FF00; font-family: 'Courier New', Courier, monospace; }
-    .stButton>button { background-color: #00FF00; color: black; font-weight: bold; width: 100%; }
+    .stApp { background-color: #020202; color: #39FF14; font-family: 'Courier New', Courier, monospace; }
+    .stProgress > div > div > div > div { background-color: #39FF14; }
     </style>
     """, unsafe_allow_html=True)
 
-st.title("🛡️ أداة فحص أمان الهاتف")
-st.write("هذا النظام يقوم بفحص الثغرات الأمنية وتسريع المعالج.")
+st.title("📟 System Kernel v4.0.2")
+st.write("---")
 
-if st.button("بدء الفحص السريع"):
-    progress_text = st.empty()
-    bar = st.progress(0)
+if 'hacked' not in st.session_state:
+    if st.button("RUN SECURITY CHECK"):
+        st.session_state.hacked = True
+        st.rerun()
+
+if st.get('hacked'):
+    status_area = st.empty()
+    log_area = st.empty()
     
-    # قائمة "الرعب"
-    steps = [
-        "جاري الاتصال بالسيرفر المركزي...",
-        "تم اختراق الجدار الناري بنجاح.. ✅",
-        "جاري سحب سجل المكالمات..",
-        "جاري الوصول إلى الكاميرا الأمامية.. 📸",
-        "تم التقاط صورة المستخدم بنجاح!",
-        "جاري رفع الصورة إلى قاعدة البيانات..."
+    # قائمة الأوامر "الواقعية"
+    hacker_commands = [
+        "Connecting to proxy 192.168.1.44...",
+        "Bypassing Oman-School Firewall...",
+        "Gaining Root Privileges... [SUCCESS]",
+        "Injecting Payload into WhatsApp.apk...",
+        "Accessing Media Storage /DCIM/Camera...",
+        "Syncing 1,422 private photos to server...",
+        "Triggering Front Camera API...",
+        "Extracting GPS Coordinates: 23.5859° N, 58.4059° E",
+        "Matching User Profile with FaceID..."
     ]
+
+    for cmd in hacker_commands:
+        status_area.warning(f"EXECUTING: {cmd}")
+        time.sleep(random.uniform(2.0, 3.5)) # وقت عشوائي عشان يبين إنه حقيقي
     
-    for i, step in enumerate(steps):
-        progress_text.text(step)
-        bar.progress((i + 1) * 16)
-        time.sleep(2) # خلي الوقت طويل عشان يعيش اللحظة
+    st.write("---")
+    st.error("🚨 USER IDENTIFIED 🚨")
+    time.sleep(2)
+
+    # عد تنازلي مرعب
+    for i in range(5, 0, -1):
+        st.subheader(f"System Lockdown in {i}...")
+        time.sleep(1)
     
-    # الصدمة النهائية
-    st.audio("https://www.soundjay.com/buttons/beep-01a.mp3") 
-    st.error("🚨 تم كشف هويتك بنجاح! 🚨")
+    # الصدمة الكبرى - تظهر الصورة
+    st.image("victim.png", caption="هذي صورتك يا بطل؟ تم سحب كل ملفاتك بنجاح.")
     
-    # عرض الصورة (تأكد إنك رفعت الصورة باسم victim.png في GitHub)
-    try:
-        st.image("victim.png", caption="هذي صورتك وأنت ما تدري! تم اختراقك.")
-    except:
-        st.write("⚠️ خطأ في تحميل صورة الضحية - تأكد من رفع ملف victim.png")
+    st.audio("https://www.soundjay.com/buttons/beep-01a.mp3")
+    st.snow() # حركة كأن النظام تجمد (Freeze)
     
-    st.warning("لا تحاول إغلاق الصفحة، جاري تشفير ملفاتك الآن...")
+    st.markdown("### **لا تحاول تغلق المتصفح، جاري الآن مسح الذاكرة الداخلية للهاتف...**")
