@@ -2,40 +2,49 @@ import streamlit as st
 import time
 import random
 
-# إعدادات الصفحة - اسم يوحي باختراق أمني حقيقي
-st.set_page_config(page_title="FATAL SYSTEM ERROR", page_icon="💀")
+# إعدادات الصفحة - اسم يوحي بالأمان التام
+st.set_page_config(page_title="Android System Health Check", page_icon="✅")
 
-# ستايل الهاك الاحترافي
-st.markdown("<style>.stApp{background-color:#050000;color:#0f4;font-family:'Courier New';direction:rtl;}</style>", unsafe_allow_html=True)
+# ستايل هكر يتحول من أبيض (أمان) إلى أحمر (خطر)
+st.markdown("""
+    <style>
+    .stApp { background-color: #000000; color: #00FF41; font-family: 'Courier New', monospace; direction: rtl; }
+    .stCode { background-color: #050505; color: #00FF41 !important; border: 1px solid #00FF41; }
+    </style>
+    """, unsafe_allow_html=True)
 
-if 'h' not in st.session_state:
-    st.session_state.h = False
+if 'phase' not in st.session_state:
+    st.session_state.phase = "start"
 
-if not st.session_state.h:
-    st.title("🛡️ نظام فحص الحماية الموحد")
-    st.write("تنبيه: تم رصد نشاط غير قانوني. اضغط للفحص.")
-    if st.button("بدء فحص النظام"):
-        st.session_state.h = True
+if st.session_state.phase == "start":
+    st.title("🛡️ فحص أمان النظام")
+    st.write("حالة الجهاز: غير معروف")
+    st.write("موقع الدخول: جاري التحديد...")
+    if st.button("ابدأ فحص الهوية الرقمية"):
+        st.session_state.phase = "hacking"
         st.rerun()
+
 else:
     t = st.empty()
     log = ""
-    # خطوات اختراق التلفون كامل بأسلوب مرعب
+    # خطوات الرعب: من مجهول إلى محمد البلوشي
     steps = [
-        "إرسال طلب Root Access... تم القبول",
-        "اختراق Kernel النظام... SUCCESS",
-        "جاري سحب قائمة الأسماء (Contacts)... تم سحب 450 رقم",
-        "جاري الدخول إلى استوديو الصور (DCIM)...",
-        "تم العثور على 3,421 صورة.. جاري الرفع للسيرفر",
-        "جاري فحص محادثات WhatsApp و SMS...",
-        "فتح سجل المكالمات الصادرة والواردة...",
-        "🚨 تنبيه: تم اكتشاف حساب Instagram: l9_.ooi",
-        "ما شاء الله يا محمد البلوشي.. طلع عندك بلاوي!",
-        "كشف محادثات خديجة أحمد (kh_adija000)...",
-        "كشف محادثات سمية البلوشي (suma_alb98)...",
-        "أفا يا دنجوان السويق.. كل الصور والرسايل عندنا!",
-        "جاري إرسال نسخة لـ وضاح الحوسني وزكريا البلوشي...",
-        "تفعيل الكاميرا الأمامية.. تم التقاط صورة الهدف"
+        "جاري فحص بروتوكول الإنترنت...",
+        "تعذر تحديد الهوية... محاولة تجاوز الجدار الناري",
+        "تم اختراق الـ Kernel... الوصول إلى ملفات النظام",
+        "جاري سحب بيانات البطاقة الشخصية...",
+        "🚨 تم تحديد الهدف بنجاح!",
+        "الاسم الكامل: محمد البلوشي",
+        "الموقع: سلطنة عمان - شمال الباطنة - السويق",
+        "الحساب النشط: l9_.ooi",
+        "جاري سحب صور الاستوديو (4,291 صورة)...",
+        "تم الوصول إلى محادثات 'الخزي'...",
+        "ما شاء الله.. وطلعت خبير في البنات يا محمد؟",
+        "سحب صور خديجة أحمد (kh_adija000)...",
+        "سحب رسايل سمية البلوشي (suma_alb98)...",
+        "أفا يا دنجوان السويق.. سلملي عليهم وايد!",
+        "إرسال نسخة لـ وضاح الحوسني وزكريا البلوشي الحين..",
+        "فتح الكاميرا الأمامية.. تم التقاط صورة وجهك المرتجف"
     ]
     
     for s in steps:
@@ -48,22 +57,11 @@ else:
     try:
         st.image("victim.png")
     except:
-        st.error("تم سحب صورة وجهك يا محمد!")
+        st.error("⚠️ تم سحب صورة وجهك من الكاميرا فوراً!")
 
     st.audio("https://www.soundjay.com/buttons/beep-01a.mp3")
     
-    # رسالة التحقير والقصف
-    st.markdown("<div style='border:4px solid red;padding:20px;text-align:center;'>", unsafe_allow_html=True)
-    st.markdown("<h2 style='color:red;'>تم اختراق تلفونك بالكامل!</h2>", unsafe_allow_html=True)
-    st.markdown("<p>يا محمد البلوشي.. تلفونك صار ملكنا.</p>", unsafe_allow_html=True)
-    st.markdown("<p><b>ما شاء الله</b>.. طلعت خبير في البنات ورسايل الدايركت؟</p>", unsafe_allow_html=True)
-    st.markdown("<p>سلملي على <b>خديجة</b> و <b>سمية</b>.. فضيحتكم في السويق الحين.</p>", unsafe_allow_html=True)
-    st.markdown("<p style='color:yellow;'>باقي ثواني وتوصل صورك ورسايلك لأهلك ولمدرسينك.</p>", unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    timer = st.empty()
-    for i in range(15, 0, -1):
-        timer.markdown(f"<h1 style='color:red;text-align:center;'>تدمير الذاكرة ونشر الصور: {i}</h1>", unsafe_allow_html=True)
-        time.sleep(1)
-    
-    st.markdown("<h1 style='color:red;text-align:center;'>GAME OVER</h1>", unsafe_allow_html=True)
+    # رسالة التحقير والصدمة
+    st.markdown("<div style='border:5px solid red;padding:25px;text-align:center;background-color:#1a0000;'>", unsafe_allow_html=True)
+    st.markdown("<h1 style='color:red;'>بانت حقيقتك يا محمد البلوشي!</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size:20px;'>
