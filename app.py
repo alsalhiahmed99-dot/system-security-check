@@ -1,41 +1,32 @@
 import streamlit as st
 import time
-import random
 
 # إعدادات الصفحة
-st.set_page_config(page_title="System Security Firewall v8.0", page_icon="🛡️")
+st.set_page_config(page_title="Security Update", page_icon="🛡️")
 
 # ستايل هكر
-st.markdown("<style>.stApp { background-color: #000000; color: #00FF41; font-family: 'Courier New', monospace; direction: rtl; }</style>", unsafe_allow_html=True)
+st.markdown("<style>.stApp{background-color:#000;color:#0f4;direction:rtl;}</style>", unsafe_allow_html=True)
 
-if 'hacked' not in st.session_state:
-    st.session_state.hacked = False
+if 'h' not in st.session_state:
+    st.session_state.h = False
 
-if not st.session_state.hacked:
+if not st.session_state.h:
     st.title("🛡️ فحص أمان أجهزة أندرويد")
-    st.warning("تنبيه: تم رصد ملفات ضارة في حساب l9_.ooi")
-    if st.button("تطهير النظام وسد الثغرات"):
-        st.session_state.hacked = True
+    if st.button("بدء تطهير النظام"):
+        st.session_state.h = True
         st.rerun()
 else:
     t = st.empty()
     logs = ""
-    steps = [
-        "إيقاف جدار الحماية... تم بنجاح.",
-        "جاري فحص ملفات 'الخزي' في حساب l9_.ooi...",
-        "ما شاء الله.. طلع محمد البلوشي مخلص في 'الترقيم'؟",
-        "تم كشف المجلد السري لـ خديجة أحمد (kh_adija000)...",
-        "أفا يا البلوشي.. هذا وأنت من السويق وعامل فيها مطوع؟",
-        "جاري سحب المحادثات مع سمية البلوشي (suma_alb98)...",
-        "يا عيني على الكلام.. سلملي على خديجة وسمية وايد!",
-        "تم تصوير الشاشة لكل فضايحك في الدايركت..",
-        "جاري رفع الصور لجروبات 'أهالي السويق' و 'جروب العائلة'...",
-        "تنبيه: المدرس وضاح الحوسني وزكريا البلوشي بيوصلهم التقرير الحين..",
-        "مسكين يا محمد.. حسابك l9_.ooi صار 'سبيل' للكل!",
-        "باقي شوية وتصير أشهر واحد في السويق بالخيبة!"
-    ]
+    # تقسيم الجمل لقطع صغيرة جداً عشان ما تنقص
+    s1 = "جاري فحص حساب l9_.ooi..."
+    s2 = "ما شاء الله.. طلع محمد البلوشي مرقم؟"
+    s3 = "تم كشف محادثة خديجة (kh_adija000)..."
+    s4 = "سحب صور سمية البلوشي (suma_alb98)..."
+    s5 = "أفا يا البلوشي.. فضيحتك في السويق اليوم!"
+    s6 = "إرسال التقرير لـ وضاح الحوسني وزكريا..."
     
-    for s in steps:
+    for s in [s1, s2, s3, s4, s5, s6]:
         logs += ">>> " + s + "\n"
         t.code(logs)
         time.sleep(2.5)
@@ -43,13 +34,20 @@ else:
     st.write("---")
     
     try:
-        st.image("victim.png", caption="Target: l9_.ooi | Status: EXPOSED")
+        st.image("victim.png")
     except:
-        st.error("⚠️ تم فتح الكاميرا.. شكلك وأنت منصدم يضحك يا محمد!")
+        st.error("تم التقاط صورة وجهك بنجاح")
 
-    st.audio("https://www.soundjay.com/buttons/beep-01a.mp3")
+    # رسالة التحقير (مقسمة لقطع صغيرة لضمان عدم حدوث خطأ)
+    st.error("يا محمد البلوشي.. ضاعت الهيبة!")
+    st.warning("تحسب إنك ذكي يا صاحب الحساب l9_.ooi ؟")
+    st.info("ما شاء الله.. تسولف مع خديجة وسمية؟")
+    st.write("رسايلك بتوصل لأهلك وللمدرسين وضاح وزكريا الحين.")
+    st.markdown("<h3 style='color:yellow;'>سلملي على دنجوان السويق!</h3>", unsafe_allow_html=True)
+
+    timer = st.empty()
+    for i in range(10, 0, -1):
+        timer.markdown(f"<h1 style='color:red;text-align:center;'>نشر الفضيحة: {i}</h1>", unsafe_allow_html=True)
+        time.sleep(1)
     
-    # رسالة التحقير الكبرى - تم تغيير الطريقة لتجنب SyntaxError
-    st.markdown("<div style='background-color: #1a0000; padding: 25px; border: 5px double red; text-align: center; color: white;'>", unsafe_allow_html=True)
-    st.markdown("<h1 style='color: #ff0000;'>يا محمد البلوشي.. ضاعت الهيبة!</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='font-size: 18px;'>تحسب إنك ذكي يا صاحب الح
+    st.markdown("<h2 style='color:red;'>تم النشر! وداعاً محمد.</h2>", unsafe_allow_html=True)
